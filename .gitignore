@@ -1,0 +1,13 @@
+# Binários e arquivos de compilação C++
+build/*
+!build/.gitkeep
+*.o
+*.out
+
+# Planilhas de dados baixadas manualmente
+data/*.xlsx
+data/*.xls
+
+# Arquivos temporários do sistema
+.DS_Store
+*~
