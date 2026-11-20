@@ -37,13 +37,11 @@ bool grafico(int quantidadeContagem=0)
 
     while(xlsxioread_sheet_next_row(planilha)) {//-> Lê até a última linha da planilha selecionada 
                                                 //   anteriormente.
-
         celulas.clear();
-
         //-> Lê as células da linha.
         while((valorCelula = xlsxioread_sheet_next_cell(planilha)) != nullptr) {
 
-            if(valorCelula != "")
+            if(valorCelula[0] != '\0')
                 celulas.push_back(valorCelula);
             else
                 celulas.push_back(" ");
@@ -111,10 +109,11 @@ bool grafico(int quantidadeContagem=0)
         else
             std::cout<< "   ";
 
-        std::cout<< std::setw(2)<< std::setfill('0')
-                 << q.second<< ' '<< std::string(50 *porCento,'.')<< ' '
+        std::cout<< std::setw(2)<< std::setfill('0')<< q.second<< ' '
+                 << std::string(50 *porCento,'=')<< ' '
+                 << q.first<< ' '
                  <<std::fixed<< std::setprecision(2)
-                 << (porCento *100)<< '%'<< std::endl;
+                 << '('<< (porCento *100)<< '%'<< ')'<< std::endl;
     }
 
     return true;
