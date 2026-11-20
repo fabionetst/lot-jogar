@@ -6,16 +6,16 @@
             "label": "Compilar lot-jogar",
             "command": "/usr/bin/g++",
             "args": [
+                "-std=c++17",
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "${workspaceFolder}/src/*.cpp",
                 "-o",
-                //"${fileDirname}/${fileBasenameNoExtension}",
-                "${workspaceFolder}/build/${fileBasenameNoExtension}",
+                "${workspaceFolder}/build/main",
                 "-lxlsxio_read"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
