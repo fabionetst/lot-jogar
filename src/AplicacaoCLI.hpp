@@ -4,17 +4,14 @@
 #include <vector>
 
 class AplicacaoCLI {
-
-    private:
-
+private:
+    static constexpr const char* VERSAO = "0.2.0";
     std::vector<std::string> args_;
 
     void exibirAjuda() const;
+    static bool converterInteiroPositivo(const std::string& texto, int& valorSaida);
 
-    static bool converterInteiroPositivo(const std::string &texto, int &valorSaida);
-
-    public:
-
+public:
     AplicacaoCLI(int argc, char* argv[]);
     int executar() const;
 };

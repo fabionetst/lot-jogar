@@ -9,7 +9,8 @@ AplicacaoCLI::AplicacaoCLI(int argc, char* argv[])
     : args_(argv, argv + argc) {}
 
 void AplicacaoCLI::exibirAjuda() const {
-    std::cout << "Uso: " << args_.at(0) << " [OPCAO]\n\n"
+    std::cout << "lot-jogar v" << VERSAO << "\n"
+              << "Uso: " << args_.at(0) << " [OPCAO]\n\n"
               << "Opcoes:\n"
               << "  --grafico       Analisa todos os concursos ate o penultimo e compara com o ultimo.\n"
               << "  --grafico <N>   Analisa os ultimos <N> concursos antes do ultimo sorteio.\n"
@@ -19,6 +20,7 @@ void AplicacaoCLI::exibirAjuda() const {
               << "  --palpite <N>   Gera um palpite baseado nos ultimos <N> concursos.\n"
               << "  --analisar      Compara 5 estrategias diferentes (5 jogos cada) em todo o historico.\n"
               << "  --analisar <N>  Compara as 5 estrategias usando janela movel de <N> concursos.\n"
+              << "  --version, -v   Exibe a versao atual do aplicativo.\n"
               << "  --help, -h      Exibe esta mensagem de ajuda.\n";
 }
 
@@ -49,6 +51,12 @@ int AplicacaoCLI::executar() const {
         exibirAjuda();
         return 0;
     }
+
+    if (comando == "--version" || comando == "-v") {
+        std::cout << "lot-jogar v" << VERSAO << "\n";
+        return 0;
+    }
+
 
     int parametroNumerico = 0;
     if (args_.size() == 3) {
