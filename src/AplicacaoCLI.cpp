@@ -17,6 +17,8 @@ void AplicacaoCLI::exibirAjuda() const {
               << "  --simular <N>   Simula usando janela movel dos ultimos <N> concursos.\n"
               << "  --palpite       Gera um palpite com as 15 mais frequentes de todo o historico.\n"
               << "  --palpite <N>   Gera um palpite baseado nos ultimos <N> concursos.\n"
+              << "  --analisar      Compara 5 estrategias diferentes (5 jogos cada) em todo o historico.\n"
+              << "  --analisar <N>  Compara as 5 estrategias usando janela movel de <N> concursos.\n"
               << "  --help, -h      Exibe esta mensagem de ajuda.\n";
 }
 
@@ -57,7 +59,8 @@ int AplicacaoCLI::executar() const {
         }
     }
 
-    if (comando != "--grafico" && comando != "--simular" && comando != "--palpite") {
+    if (comando != "--grafico" && comando != "--simular" &&
+        comando != "--palpite" && comando != "--analisar") {
         std::cerr << "Erro: Opcao desconhecida '" << comando << "'.\n\n";
         exibirAjuda();
         return 1;
@@ -81,6 +84,10 @@ int AplicacaoCLI::executar() const {
 
     if (comando == "--palpite") {
         return analisador.gerarPalpite(parametroNumerico) ? 0 : 1;
+    }
+
+    if (comando == "--analisar") {
+        return analisador.analisarEstrategias(parametroNumerico) ? 0 : 1;
     }
 
     return 0;
